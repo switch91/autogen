@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Premier Article",
+        "content": "Ceci est le contenu du premier article. Il est chargé automatiquement depuis le fichier JSON."
+    },
+    {
+        "title": "Deuxième Article",
+        "content": "Contenu du deuxième article. Avec un site automatisé, vous pouvez facilement ajouter de nouveaux articles."
+    },
+    {
+        "title": "Troisième Article",
+        "content": "Contenu du troisième article. Votre blog est désormais mis à jour automatiquement."
+    }
+]
