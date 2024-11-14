@@ -1,7 +1,5 @@
-// URL brute du fichier data.json hÈbergÈ sur GitHub
-const dataUrl = "https://raw.githubusercontent.com/switch91/BlogAuto/main/data.json?token=GHSAT0AAAAAAC2IAHCBXVAFK3LAZMY5VEV6ZZQ4OYA";
+const dataUrl = https://github.com/switch91/autogen.git // URL sans token
 
-// Charger les articles depuis le fichier JSON sur GitHub
 async function loadArticles() {
     try {
         const response = await fetch(dataUrl);
@@ -9,28 +7,30 @@ async function loadArticles() {
             throw new Error(`Erreur de chargement : ${response.statusText}`);
         }
         const articles = await response.json();
-
         const articlesContainer = document.getElementById("articles");
 
-        // CrÈer un ÈlÈment pour chaque article
         articles.forEach(article => {
-            const articleElement = document.createElement("div");
-            articleElement.classList.add("article");
+            if (article.title && article.content) {
+                const articleElement = document.createElement("div");
+                articleElement.classList.add("article");
 
-            const title = document.createElement("h2");
-            title.innerText = article.title;
+                const title = document.createElement("h2");
+                title.innerText = article.title;
 
-            const content = document.createElement("p");
-            content.innerText = article.content;
+                const content = document.createElement("p");
+                content.innerText = article.content;
 
-            articleElement.appendChild(title);
-            articleElement.appendChild(content);
-            articlesContainer.appendChild(articleElement);
+                articleElement.appendChild(title);
+                articleElement.appendChild(content);
+                articlesContainer.appendChild(articleElement);
+            } else {
+                console.warn("Article manquant de donn√©es :", article);
+            }
         });
     } catch (error) {
         console.error("Erreur lors du chargement des articles :", error);
+        document.getElementById("articles").innerHTML = "<p>Impossible de charger les articles.</p>";
     }
 }
 
-// Charger les articles au chargement de la page
 window.onload = loadArticles;
